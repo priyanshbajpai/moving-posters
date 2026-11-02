@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Make Any Poster Move</title>
+<meta name="description" content="A free, step-by-step workflow and Claude Code skill for making looping moving posters, with three Indian starter posters.">
+<meta property="og:title" content="Make Any Poster Move">
+<meta property="og:description" content="A free, step-by-step workflow and Claude Code skill for making looping moving posters, with three Indian starter posters.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://priyanshbajpai.github.io/moving-posters/">
+<meta property="og:image" content="https://priyanshbajpai.github.io/moving-posters/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}  .dl { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin: 26px 0 0; }
+  .download { display: inline-block; background: var(--ink); color: var(--wall); text-decoration: none; font-weight: 650;
+    font-stretch: 108%; font-size: 17px; padding: 14px 22px; border-radius: 999px; }
+  .download:hover { background: var(--accent); color: #FFFFFF; }
+  .dl span { font-size: 14px; color: var(--muted); }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  /* Layout: a gallery wall. One reading column; posters hung like prints; steps as numbered museum labels. */
+  :root {
+    --wall: #EAE8E8; --paper: #FBFAF8; --ink: #1E1C1D; --muted: #5A5556; --rule: #D3CFCF;
+    --accent: #C9352A; --code-bg: #1E1C1D; --code-fg: #F3EFEC; --shadow: rgba(40, 30, 30, 0.14);
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --wall: #1B1A1A; --paper: #262424; --ink: #ECE8E6; --muted: #A9A2A2; --rule: #3A3636;
+    --accent: #F0644F; --code-bg: #0F0E0E; --code-fg: #ECE8E6; --shadow: rgba(0, 0, 0, 0.45); color-scheme: dark } }
+  :root[data-theme="dark"] {
+    --wall: #1B1A1A; --paper: #262424; --ink: #ECE8E6; --muted: #A9A2A2; --rule: #3A3636;
+    --accent: #F0644F; --code-bg: #0F0E0E; --code-fg: #ECE8E6; --shadow: rgba(0, 0, 0, 0.45); color-scheme: dark }
+
+  * { box-sizing: border-box; }
+  body { background: var(--wall); color: var(--ink); font-family: var(--body); font-stretch: 100%; font-size: 17px; line-height: 1.6; }
+  .wrap { max-width: 860px; margin: 0 auto; padding-block: 56px 72px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .col { max-width: 640px; }
+  h1, h2, h3 { font-family: var(--display); font-stretch: 115%; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(42px, 8vw, 76px); }
+  h2 { font-size: clamp(28px, 4.6vw, 40px); margin-bottom: 18px; }
+  h3 { font-size: 22px; font-stretch: 110%; margin-bottom: 6px; }
+  .ul { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 0.12em; text-underline-offset: 0.12em; }
+  p { margin: 0 0 14px; }
+  .eyebrow { font-stretch: 110%; font-weight: 600; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .lede { font-size: 20px; line-height: 1.55; color: var(--ink); max-width: 600px; margin-top: 22px; }
+  section { margin-top: 84px; }
+  a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+  /* the wall of posters */
+  .wall { display: grid; grid-template-columns: 1.9fr 1fr; gap: 22px; margin-top: 44px; align-items: start; }
+  .wall .stack { display: grid; gap: 22px; }
+  figure { margin: 0; }
+  .print { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; box-shadow: 0 22px 44px var(--shadow), 0 3px 8px var(--shadow); background: var(--paper); }
+  figcaption { font-stretch: 110%; font-weight: 600; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-top: 12px; }
+
+  /* what you get */
+  .kit { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .kit div { background: var(--paper); padding: 20px 20px 18px; border-top: 4px solid var(--accent); box-shadow: 0 8px 20px var(--shadow); min-width: 0; }
+  .kit b { display: block; font-family: var(--display); font-stretch: 115%; font-size: 34px; line-height: 1; margin-bottom: 8px; }
+  .kit span { font-size: 15px; color: var(--muted); }
+
+  /* install */
+  .need { list-style: none; padding: 0; margin: 0 0 22px; display: grid; gap: 10px; }
+  .need li { display: grid; grid-template-columns: 160px 1fr; gap: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+  .need li strong { font-weight: 650; }
+  .need li span { color: var(--muted); min-width: 0; }
+
+  /* code and prompts */
+  .code { position: relative; background: var(--code-bg); color: var(--code-fg); border-radius: 10px; margin: 14px 0 20px; }
+  .code pre { margin: 0; padding: 18px 20px; padding-right: 92px; overflow-x: auto; font-family: var(--mono); font-size: 14px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+  .prompt { position: relative; background: var(--paper); border-left: 5px solid var(--accent); padding: 18px 92px 18px 20px; margin: 14px 0 22px; box-shadow: 0 8px 20px var(--shadow); }
+  .prompt .say { font-stretch: 110%; font-weight: 600; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .prompt p { margin: 0; font-size: 17px; }
+  .copy { position: absolute; top: 12px; right: 12px; font: 600 13px/1 var(--body); font-stretch: 105%; padding: 8px 12px; border-radius: 999px; cursor: pointer;
+    border: 1.5px solid currentColor; background: transparent; color: inherit; }
+  .code .copy { color: var(--code-fg); }
+  .prompt .copy { color: var(--ink); }
+
+  /* the steps: numbered museum labels (the order is the workflow) */
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 34px; counter-reset: step; }
+  .steps > li { display: grid; grid-template-columns: 72px 1fr; gap: 18px; }
+  .steps > li::before { counter-increment: step; content: counter(step); font-family: var(--display); font-stretch: 115%; font-weight: 750; font-size: 44px; line-height: 1;
+    width: 64px; height: 64px; display: grid; place-items: center; background: var(--ink); color: var(--wall); }
+  .steps > li > div { min-width: 0; }
+  .steps p { color: var(--ink); }
+  .note { color: var(--muted); font-size: 15px; }
+
+  /* styles */
+  .styles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .styles figure { min-width: 0; }
+  .styles h3 { margin-top: 16px; }
+  .styles p { font-size: 15px; color: var(--muted); }
+  .styles code { font-family: var(--mono); font-size: 13px; color: var(--ink); background: var(--paper); padding: 2px 6px; }
+
+  /* lessons and checklist */
+  .lessons { display: grid; gap: 14px; }
+  .lessons div { display: grid; grid-template-columns: 200px 1fr; gap: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+  .lessons strong { font-weight: 650; }
+  .lessons span { min-width: 0; }
+  .check { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .check li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; }
+  .check li::before { content: ""; width: 18px; height: 18px; margin-top: 4px; border: 2px solid var(--ink); }
+  code.inline { font-family: var(--mono); font-size: 0.88em; background: var(--paper); padding: 2px 6px; }
+
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .wall { grid-template-columns: 1fr 1fr; }
+    .wall > figure:first-child { grid-column: 1 / -1; }
+    .wall .stack { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
+    .kit, .styles { grid-template-columns: 1fr; }
+    .need li, .lessons div { grid-template-columns: 1fr; gap: 4px; }
+    .steps > li { grid-template-columns: 1fr; gap: 12px; }
+    .steps > li::before { width: 52px; height: 52px; font-size: 34px; }
+    .prompt { padding-right: 20px; padding-top: 52px; }
+    .code pre { padding-top: 52px; padding-right: 20px; }
+  }
+  @media (prefers-reduced-motion: no-preference) { .copy { transition: background 0.15s ease; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">A free workflow · Claude Code</div>
+    <h1>Make any poster <span class="ul">move.</span></h1>
+    <p class="lede">I made these three Indian moving posters with Claude Code: Mumbai traffic, a sitar and tabla jugalbandi, and a horse galloping across Indian textiles. This page is the whole workflow, plus the skill that lets Claude Code do the same for your idea.</p>
+    <p class="dl"><a class="download" href="https://github.com/priyanshbajpai/moving-posters/releases/latest/download/moving-posters.skill">Download the skill</a><span>moving-posters.skill · about 5 MB · free</span></p>
+
+    <div class="wall">
+      <figure><img class="print" src="posters/p01.jpg" alt="Aamchi Mumbai: BEST buses, kaali-peeli taxis and autorickshaws in front of the Gateway of India, in flat poster colours"><figcaption>01 · Aamchi Mumbai</figcaption></figure>
+      <div class="stack">
+        <figure><img class="print" src="posters/p02.jpg" alt="Jugalbandi: two sculpted faces in turmeric and indigo ink with googly eyes and dashed letters"><figcaption>02 · Jugalbandi</figcaption></figure>
+        <figure><img class="print" src="posters/p03.jpg" alt="Ghoda: a galloping horse on kraft card over a kolam on a red floor"><figcaption>03 · Ghoda</figcaption></figure>
+      </div>
+    </div>
+  </header>
+
+  <section id="what">
+    <div class="eyebrow">What you get</div>
+    <h2>One skill for Claude Code</h2>
+    <div class="col"><p>A skill is a folder of instructions and tools that Claude Code reads when the job needs it. This one knows how to study a poster you like, split your idea into layers, give each layer a simple motion, and render a loop with no visible jump. You describe the poster, and it does the building.</p></div>
+    <div class="kit">
+      <div><b>3</b><span>finished posters to start from, one in each style</span></div>
+      <div><b>7</b><span>small tools: measure a poster's colours and motion, compare fonts, check the loop, and more</span></div>
+      <div><b>1</b><span>written method, including every mistake I made on the way</span></div>
+    </div>
+  </section>
+
+  <section id="setup">
+    <div class="eyebrow">Before you start</div>
+    <h2>What you need</h2>
+    <ul class="need">
+      <li><strong>Claude Code</strong><span>The app or the terminal version. The skill works inside it.</span></li>
+      <li><strong>Node.js 18 or newer</strong><span>Runs the free open-source renderer that turns the poster into a video.</span></li>
+      <li><strong>ffmpeg</strong><span>Checks and converts video files.</span></li>
+      <li><strong>Python 3 with numpy</strong><span>Used by the measuring tools.</span></li>
+    </ul>
+    <div class="col"><p>On a Mac with Homebrew, this installs the last three:</p></div>
+    <div class="code"><button class="copy" type="button" aria-label="Copy install commands">Copy</button><pre>brew install node ffmpeg python
+pip3 install numpy</pre></div>
+    <div class="col"><p class="note">On Windows or without Homebrew, open Claude Code and type: "Install Node.js, ffmpeg and Python with numpy on this computer." It will walk you through it.</p></div>
+
+    <h3 style="margin-top:34px">Add the skill</h3>
+    <div class="col"><p class="dl"><a class="download" href="https://github.com/priyanshbajpai/moving-posters/releases/latest/download/moving-posters.skill">Download the skill</a><span>moving-posters.skill · about 5 MB · free</span></p><p>The file you get is <code class="inline">moving-posters.skill</code>. It's a zip of one folder. Put that folder in Claude Code's skills folder:</p></div>
+    <div class="code"><button class="copy" type="button" aria-label="Copy skill install command">Copy</button><pre>mkdir -p ~/.claude/skills
+unzip ~/Downloads/moving-posters.skill -d ~/.claude/skills/</pre></div>
+    <div class="col"><p class="note">If your Claude app shows a "Save skill" button on the file, that works too. Restart Claude Code afterwards so it picks the skill up.</p></div>
+  </section>
+
+  <section id="workflow">
+    <div class="eyebrow">The workflow</div>
+    <h2>Seven steps, in this order</h2>
+    <div class="col"><p>You do the deciding, Claude Code does the building. Each step has the kind of thing to type. Change the words to your own idea.</p></div>
+
+    <ol class="steps">
+      <li><div>
+        <h3>Pick the idea and the size</h3>
+        <p>One place, festival or everyday thing, and the words on the poster. Choose 4:5 (1080×1350) for a feed post or 9:16 (1080×1920) for Reels. A loop of 8 to 12 seconds feels alive without repeating too soon.</p>
+        <div class="prompt"><button class="copy" type="button">Copy</button><div class="say">Type</div><p>I want a moving poster of Kolkata's yellow taxis crossing Howrah Bridge, with the title "Kolkata" in Bengali and English. 4:5, a 12-second loop.</p></div>
+      </div></li>
+
+      <li><div>
+        <h3>Show it a poster you like</h3>
+        <p>This is the step that makes it look professional. Attach a poster or a screen recording of a moving poster whose look you want. Ask Claude Code to study it before building anything: the exact colours, the texture, the font, and how it moves. It writes those down as a short style sheet and builds only from that.</p>
+        <div class="prompt"><button class="copy" type="button">Copy</button><div class="say">Type</div><p>Here's a poster whose style I love. Before you build anything, study it: sample its exact colours, zoom in on the texture, find the closest free font, and measure how it moves. Write it all down as a style sheet and show me.</p></div>
+        <p class="note">Use a poster you like for its look, then make the subject your own.</p>
+      </div></li>
+
+      <li><div>
+        <h3>Start from the closest style</h3>
+        <p>The skill has three finished posters to begin from, so nothing starts from a blank page. Claude Code picks the closest one, copies it into a new folder, and changes it to your idea.</p>
+        <div class="prompt"><button class="copy" type="button">Copy</button><div class="say">Type</div><p>Use the moving-posters skill. Start from the closest template and set up a new poster folder for this idea.</p></div>
+      </div></li>
+
+      <li><div>
+        <h3>Make the pieces</h3>
+        <p>Flat graphic looks are drawn entirely in code: vehicles, buildings, letters, patterns. Photo looks need a few pictures. Use your own photos, free museum photos (The Met's Open Access collection is free for any use), or an image tool you already use. Fonts come from Google Fonts, which are free.</p>
+        <div class="prompt"><button class="copy" type="button">Copy</button><div class="say">Type</div><p>Draw the taxis, the bridge and the river in code, in the style sheet's colours. Use a free Google font that matches the reference, plus one with Bengali letters.</p></div>
+      </div></li>
+
+      <li><div>
+        <h3>Check still frames first</h3>
+        <p>Before any video, look at a few stills next to your reference. Fixing a position or a colour on a still takes seconds; fixing it after a render takes a render.</p>
+        <div class="prompt"><button class="copy" type="button">Copy</button><div class="say">Type</div><p>Show me three still frames next to the reference at the same size. Point out anything that doesn't match: colours, texture, font, how big things are.</p></div>
+      </div></li>
+
+      <li><div>
+        <h3>Animate in layers</h3>
+        <p>Split the poster into layers. Most of them stay still; the title and the landmark usually never move. Every moving layer gets one simple motion: traffic that stops and goes, a kite that sways, letters that glide, a sun that turns slowly. Every motion repeats a whole number of times in the loop, so the end lands exactly on the start.</p>
+        <div class="prompt"><button class="copy" type="button">Copy</button><div class="say">Type</div><p>Animate it in layers. Keep the title and the bridge still. Taxis stop and go in two rows at different speeds, the river shimmers slowly. Make it a seamless 12-second loop.</p></div>
+      </div></li>
+
+      <li><div>
+        <h3>Check the loop and render</h3>
+        <p>Claude Code compares the first and last frame to prove the loop has no jump, then renders the video. A 12-second poster renders in about fifteen seconds on a laptop, and every change after that is just another quick render.</p>
+        <div class="prompt"><button class="copy" type="button">Copy</button><div class="say">Type</div><p>Check that the loop is seamless, render the final video, and measure its motion so I can compare it with the reference.</p></div>
+      </div></li>
+    </ol>
+  </section>
+
+  <section id="styles">
+    <div class="eyebrow">Three ways to start</div>
+    <h2>The starter posters</h2>
+    <div class="styles">
+      <figure><img class="print" src="posters/p01.jpg" alt="Flat vector parallax poster"><h3>Flat parallax</h3><p>Rows of vehicles in stop-and-go traffic; the landmark and title stay still. Drawn fully in code. <code>parallax-traffic</code></p></figure>
+      <figure><img class="print" src="posters/p02.jpg" alt="Kinetic collage poster"><h3>Kinetic collage</h3><p>Cut-out faces in one ink, googly eyes, dashed letters. Everything glides between a few layouts, then holds. <code>kinetic-collage</code></p></figure>
+      <figure><img class="print" src="posters/p03.jpg" alt="Paper stop-motion poster"><h3>Paper stop-motion</h3><p>A horse gallops at six drawings a second, on a new Indian paper or fabric each beat. <code>paper-stop-motion</code></p></figure>
+    </div>
+  </section>
+
+  <section id="more-prompts">
+    <div class="eyebrow">More things to type</div>
+    <h2>Once you're going</h2>
+    <div class="prompt"><button class="copy" type="button">Copy</button><div class="say">Animate a poster you already have</div><p>Here's a poster I made for our café's Diwali night. Separate it into layers, retype the title as real text, and make the diyas flicker and the rangoli turn slowly. Keep everything else still. Seamless 10-second loop, 9:16.</p></div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><div class="say">Make a series</div><p>Make three more versions of this poster for Pune, Chennai and Jaipur. Keep the style sheet, change the vehicles, the landmark and the title.</p></div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><div class="say">Fix something you see</div><p>The label over the white bus is hard to read. Make labels that sit on the artwork dark with light text, and check every label at phone size.</p></div>
+  </section>
+
+  <section id="lessons">
+    <div class="eyebrow">Mistakes I made, so you don't have to</div>
+    <h2>What made the difference</h2>
+    <div class="lessons">
+      <div><strong>Copying the idea, not the look</strong><span>My first versions only borrowed the idea of the reference and looked generic. Measuring its exact colours, texture, font and timing fixed it every time.</span></div>
+      <div><strong>Small jumps instead of a rhythm</strong><span>Lots of little movements feel jittery. Look at how the reference moves: often it's a few big, smooth moves with stillness in between.</span></div>
+      <div><strong>Moving everything</strong><span>If the title and the landmark move too, it stops reading as a poster. Pick three or four things that move.</span></div>
+      <div><strong>A loop that jumps</strong><span>Every motion has to come back to where it started at the end of the loop. Ask Claude Code to compare the first and last frame.</span></div>
+      <div><strong>Labels you can't read</strong><span>A light label over light artwork disappears on a phone. Check every frame at phone size before you post.</span></div>
+      <div><strong>Careless with culture</strong><span>No googly eyes or jokes on gods, goddesses or religious symbols. If any Hindi or regional text is generated, read it before posting.</span></div>
+    </div>
+  </section>
+
+  <section id="checklist">
+    <div class="eyebrow">Before you post</div>
+    <h2>A quick check</h2>
+    <ul class="check">
+      <li>It still works as a poster if you pause it on any frame.</li>
+      <li>The loop has no visible jump.</li>
+      <li>Every word reads at phone size, and nothing sits under Instagram's buttons or caption at the bottom.</li>
+      <li>Colours, texture and font match your style sheet, with nothing borrowed from another style.</li>
+      <li>You know where every picture and font came from and that you're allowed to use it.</li>
+      <li>Only animate posters you made, have permission for, or that are free to use.</li>
+    </ul>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll(".copy").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const box = btn.parentElement;
+      const src = box.querySelector("pre") || box.querySelector("p");
+      const text = src.innerText.trim();
+      const done = (label) => { btn.textContent = label; setTimeout(() => (btn.textContent = "Copy"), 1600); };
+      const select = () => { const r = document.createRange(); r.selectNodeContents(src); const s = getSelection(); s.removeAllRanges(); s.addRange(r); done("Selected"); };
+      try {
+        navigator.clipboard.writeText(text).then(() => done("Copied"), select);
+      } catch (e) { select(); }
+    });
+  });
+</script>
+
+</body>
+</html>
